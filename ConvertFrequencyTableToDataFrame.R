@@ -1,0 +1,1 @@
+new.data.frame <- as.data.frame(lapply(as.data.frame.table(TABLE.NAME), function(x)rep(x, as.data.frame.table(TABLE.NAME)$FREQUENCY.VARIABLE.NAME)))[, -COLUMN.YOU.DONT.NEED.ANYMORE]
