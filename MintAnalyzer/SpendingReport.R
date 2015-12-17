@@ -2,7 +2,7 @@
 setwd("~/Documents/Life Stuff/FINANCES")
 
 # Set name of transaction CSV exported from Mint.com
-file.name  <- "transactions7-14-15-to-11-6-15.csv"
+file.name  <- "transactions7-14-15-to-12-16-15.csv"
 
 # Import CSV of transactions exported from Mint.com
 transactions  <- (read.csv (paste("ExportsFromMint/", file.name, sep = "")))
@@ -14,7 +14,7 @@ transactions$Original.Description <- NULL
 
 # ---------------------------------------------------------------------------
 # make.period : data.frame Date Date -> data.frame
-# Takes a the "transactions" data.frame, a start date, and end date
+# Takes the "transactions" data.frame, a start date, and end date
 # to produce a new "transactions" data.frame with the dates between
 # and including those specified
 # EXAMPLE: df <- make.period(df, "column", "0015-08-20", "0015-10-31")
@@ -32,7 +32,7 @@ make.period  <- function(df, col, start.date, end.date){
 
 
 # Make a dataframe for entire semester
-transactions <- make.period(transactions, "Date", "0015-08-20", "0015-10-31")
+transactions <- make.period(transactions, "Date", "2015-08-20", "2015-12-16")
 
 # Make a list of all categories
 list.of.categories <- levels(factor(transactions$Category))
@@ -82,7 +82,7 @@ barplot(spending.by.cat$category.totals,
 #######
 
 # Remove unneeded categories of spending
-spending.by.cat.min <- spending.by.cat[3:nrow(spending.by.cat),]
+spending.by.cat.min <- spending.by.cat[2:nrow(spending.by.cat),]
 
 # Plot again
 par(las=2)
@@ -104,8 +104,8 @@ barplot(spending.by.cat.min$category.totals,
 ### Make a bar plot of spending by different months "Spending by Months"
 
 # Make a transactions dataframe for individual months
-transactions.sept <- make.period(transactions, "Date", "0015-09-01", "0015-09-30")
-transactions.oct <- make.period(transactions, "Date", "0015-10-01", "0015-10-31")
+transactions.sept <- make.period(transactions, "Date", "2015-10-01", "2015-10-31")
+transactions.oct <- make.period(transactions, "Date", "2015-11-01", "2015-11-30")
 
 # Get category spending totals for individual months
 # - September
